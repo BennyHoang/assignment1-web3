@@ -2,7 +2,7 @@ $(function(){
     var $btn_science;
     var $btn_culture;
     var $btn_sport;
-    var $XML_menu;
+    var $btn_menu;
     var $testOutput;
 
     var XML_feed_object = null;
@@ -14,14 +14,13 @@ $(function(){
             $btn_science = $("#btn_science");
             $btn_culture = $("#btn_culture");
             $btn_sport = $("#btn_sport");
-            $XML_menu = $("#XML_menu");
+            $btn_menu = $("#btn_menu");
             $testOutput = $("#testOutput");
-            generateHTMLFromXML();
-
-
         }();//end setHTMLObjects
 
         var setEvents = function(){
+            $btn_menu.on("click", generateHTMLFromXML);
+
             $btn_science.on("click", function(){
                 console.log("SCIENCE BITCH");
                 makeNRKCall(url_science);
@@ -34,16 +33,18 @@ $(function(){
                 console.log("SPORT besh");
             })
         }();//end setEvents
-        getFeedXML();
-       
+       getFeedXML();
     }();//end init
 
     function generateHTMLFromXML(){
+        alert("HELLO");
         $(XML_feed_object)
             .find("article")
             .each(function(){
                 var title = $("title", this).text();
                 var url = $("url", this).text();
+
+            $testOutput.append(title);
                 /*
                 var newAnchor = $("<a>")
                     .attr(
