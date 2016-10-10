@@ -2,18 +2,23 @@ $(function(){
     var $btn_science;
     var $btn_culture;
     var $btn_sport;
+    var $XML_menu;
+    var $testOutput;
 
-
-    var url_science = "http://www.nrk.no/viten/toppsaker.rss";
-    var url_culture = 'http://www.nrk.no/kultur/toppsaker.rss';
-    var url_sport = 'http://www.nrk.no/sport/siste.rss';
+    var XML_feed_object = null;
 
     //init
     var init = function(){
+      
         var setHTMLObjects = function(){
             $btn_science = $("#btn_science");
             $btn_culture = $("#btn_culture");
             $btn_sport = $("#btn_sport");
+            $XML_menu = $("#XML_menu");
+            $testOutput = $("#testOutput");
+            generateHTMLFromXML();
+
+
         }();//end setHTMLObjects
 
         var setEvents = function(){
@@ -29,8 +34,55 @@ $(function(){
                 console.log("SPORT besh");
             })
         }();//end setEvents
-
+        getFeedXML();
+       
     }();//end init
+
+    function generateHTMLFromXML(){
+        $(XML_feed_object)
+            .find("article")
+            .each(function(){
+                var title = $("title", this).text();
+                var url = $("url", this).text();
+                /*
+                var newAnchor = $("<a>")
+                    .attr(
+                        {
+                            id: title,
+                            src: url
+                        }
+                    )
+                    .html(title);
+                var $newList = $("<li>")
+                    .append(newAnchor);
+                $testOutput($newList);
+                */
+            });
+    }
+
+    function getFeedXML(){
+        $.ajax({
+            method: "GET",
+            url: "xml/nrk-rss.xml",
+            dataType: "xml",
+            async: true,
+
+            beforeSend: function(){
+                console.log("LOADING");
+            },
+            success: function(result){
+                console.log("SUCCESS");
+                XML_feed_object = result;
+            },
+            error: function(xhr, statusText, errorMsg){
+                //Error handling
+                console.log(xhr + " " + statusText + " " + errorMsg);
+            },
+            complete: function(){
+                console.log("FUNITO");
+            }
+        }); // END OF AJAX
+    }
 
     function makeNRKCall(RSS_url){
          $.ajax(

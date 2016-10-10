@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<articles>
+        <article>
+            <title>Viten</title>
+            <url>http://www.nrk.no/viten/toppsaker.rss</url>
+        </article>
+        <article>
+            <title>Sport</title>
+            <url>http://www.nrk.no/sport/siste.rss</url>
+        </article>
+        <article>
+            <title>Kultur</title>
+            <url>http://www.nrk.no/kultur/toppsaker.rss</url>
+        </article>
+</articles>
