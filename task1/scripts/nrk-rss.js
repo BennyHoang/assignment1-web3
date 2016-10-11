@@ -21,6 +21,7 @@ $(function () {
             $dropdown_xml = $("#dropdown_xml");
             $testOutput = $("#testOutput");
             $main_content = $("#main_content");
+
         } ();//end setHTMLObjects
 
         var setEvents = function () {
@@ -94,6 +95,9 @@ $(function () {
         )
             .done(function (result) {
                 showArticle(result);
+            //clearfix hax
+            $("#main_content > article:nth-child(3n)").after("<div class='clearfix'></div>");
+                
             })
             .fail(function (a, b, c) {
                 $("#testOutput").html("Det gikk ikke bra");
