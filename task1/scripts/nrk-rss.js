@@ -3,6 +3,7 @@ $(function(){
     var $btn_culture;
     var $btn_sport;
     var $btn_menu;
+    var $dropdown_xml;
     var $testOutput;
 
     var XML_feed_object = null;
@@ -15,6 +16,7 @@ $(function(){
             $btn_culture = $("#btn_culture");
             $btn_sport = $("#btn_sport");
             $btn_menu = $("#btn_menu");
+            $dropdown_xml = $("#dropdown_xml");
             $testOutput = $("#testOutput");
         }();//end setHTMLObjects
 
@@ -37,15 +39,13 @@ $(function(){
     }();//end init
 
     function generateHTMLFromXML(){
-        alert("HELLO");
+        $dropdown_xml.html("");
         $(XML_feed_object)
             .find("article")
             .each(function(){
                 var title = $("title", this).text();
                 var url = $("url", this).text();
 
-            $testOutput.append(title);
-                /*
                 var newAnchor = $("<a>")
                     .attr(
                         {
@@ -56,8 +56,8 @@ $(function(){
                     .html(title);
                 var $newList = $("<li>")
                     .append(newAnchor);
-                $testOutput($newList);
-                */
+                $dropdown_xml.append($newList);
+          
             });
     }
 
