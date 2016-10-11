@@ -23,17 +23,12 @@ $(function(){
         var setEvents = function(){
             $btn_menu.on("click", generateHTMLFromXML);
 
-            $btn_science.on("click", function(){
-                console.log("SCIENCE BITCH");
-                makeNRKCall(url_science);
+            $dropdown_xml.on("click","a.getNewsTerm", function(event){
+                var RSS_url = $(this).attr("src");
+                makeNRKCall(RSS_url);
             })
 
-            $btn_culture.on("click", function(){
-                console.log("CULTURE BIAAAAATCH");
-            })
-            $btn_sport.on("click", function(){
-                console.log("SPORT besh");
-            })
+
         }();//end setEvents
        getFeedXML();
     }();//end init
@@ -49,6 +44,7 @@ $(function(){
                 var newAnchor = $("<a>")
                     .attr(
                         {
+                            class: "getNewsTerm",
                             id: title,
                             src: url
                         }
@@ -88,7 +84,7 @@ $(function(){
     function makeNRKCall(RSS_url){
          $.ajax(
                     {
-                        url:"../proxy.php?xml_feed_url=" + escape(RSS_url) ,
+                        url:"../proxy.php?xml_feed_url=" + RSS_url,
                         method:"GET",
                         dataType:"xml"
                     }
