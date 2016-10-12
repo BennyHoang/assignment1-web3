@@ -29,10 +29,19 @@ $(function () {
 
         $.getJSON(url)
             .done(function (result) {
+                displayPokemon(result);
                 alert("FOUND POKEMON!");
             })
             .fail(function () {
                 alert("ERROR")
             })
+    }
+
+    function displayPokemon(result){
+        $(result).each(function(){
+            var name = this.name;
+
+            $mainContent.append(name);
+        });
     }
 })
