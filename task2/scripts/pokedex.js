@@ -34,6 +34,10 @@ $(function () {
             })
     }
 
+    function showModal(){
+        var modal = ''
+    }
+
     function buildArticle(name, height, weight, type, sprites){
          var $article = $("<article>");
                 var $thumbnail = $("<div>")
