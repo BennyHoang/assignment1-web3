@@ -46,6 +46,7 @@ $(function () {
                 var url = $("url", this).text();
 
                 var newAnchor = $("<a>")
+
                     .attr(
                     {
                         class: "getNewsTerm",
@@ -131,3 +132,4 @@ $(function () {
             });
     }
 });
+ 

@@ -25,23 +25,28 @@ $(function () {
 
     function getPokemon(url, searchTerm) {
         url += searchTerm;
-        alert("userinput: " + url);
-
         $.getJSON(url)
             .done(function (result) {
                 displayPokemon(result);
-                alert("FOUND POKEMON!");
             })
             .fail(function () {
                 alert("ERROR")
             })
     }
 
-    function displayPokemon(result){
-        $(result).each(function(){
-            var name = this.name;
+    function displayPokemon(result) {
 
-            $mainContent.append(name);
+        
+       
+        $(result)
+            .each(function(){
+                var name = this.name;
+                var height = this.height;
+                var weight = this.weight;
+                var type = result.types[0].type.name;
+                var sprites = this.sprites.front_shiny_female;
+                $mainContent.append(name, height, weight,type, sprites);
         });
+        
     }
 })
