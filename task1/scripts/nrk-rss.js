@@ -1,10 +1,7 @@
 $(function () {
-    var $btn_science;
-    var $btn_culture;
-    var $btn_sport;
     var $btn_menu;
     var $dropdown_xml;
-    var $testOutput;
+    var $feed_header;
 
     var XML_feed_object = null;
 
@@ -14,13 +11,10 @@ $(function () {
     var init = function () {
 
         var setHTMLObjects = function () {
-            $btn_science = $("#btn_science");
-            $btn_culture = $("#btn_culture");
-            $btn_sport = $("#btn_sport");
             $btn_menu = $("#btn_menu");
             $dropdown_xml = $("#dropdown_xml");
-            $testOutput = $("#testOutput");
             $main_content = $("#main_content");
+            $feed_header = $("#feed_header");
 
         } ();//end setHTMLObjects
 
@@ -29,6 +23,7 @@ $(function () {
 
             $dropdown_xml.on("click", "a.getNewsTerm", function (event) {
                 var RSS_url = $(this).attr("src");
+                $feed_header.html($(this).html());
                 makeNRKCall(RSS_url);
             })
 
