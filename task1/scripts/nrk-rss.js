@@ -27,7 +27,6 @@ $(function () {
                 makeNRKCall(RSS_url);
             })
 
-
         } ();//end setEvents
         getFeedXML();
     } ();//end init
